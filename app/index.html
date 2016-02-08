@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>lasvegas</title>
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="places col-sm-3">
+            <div class="header text-center">
+                <h1 class="header__title">Las Vegas</h1>
+            </div>
+
+            <div class="places__search input-group">
+                <input type="text" class="form-control" placeholder="Search ..."
+                    data-bind="value: search, valueUpdate: 'afterkeydown'">
+                <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></div>
+            </div>
+
+            <ul class="places__list list-unstyled" data-bind='foreach: filteredPlaces'>
+                <li class="places__item-outer">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" data-bind="checked: selected">
+                            <ul class="places__item list-unstyled">
+                                <li class="places__name" data-bind='text: name'></li>
+                                <li class="places__location" data-bind='text: location'></li>
+                            </ul>
+                        </label>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="gmap col-sm-9">
+            <div id="map"></div>
+        </div>
+    </div>
+</div>
+
+<script src="scripts/vendor/jquery.min.js"></script>
+<script src="scripts/vendor/bootstrap.min.js"></script>
+<script src="scripts/vendor/knockout.js"></script>
+<script src="scripts/main.js"></script>
+<script type="text/javascript">
+
+    var map;
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: -34.397, lng: 150.644},
+            zoom: 8
+        });
+    }
+
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_yipln8MQDbTgBMISVAeosciiG-1bAkY&callback=initMap">
+</script>
+
+</body>
+</html>
