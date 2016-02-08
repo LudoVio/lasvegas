@@ -1,3 +1,5 @@
+$color-selected: orange;
+
 html,
 body {
   height: 100%;
@@ -14,10 +16,15 @@ body {
   }
 
   &__item {
+    border: 2px solid rgba(255,255,255,0);
     cursor: pointer;
     font-weight: 400;
+    margin: 0;
     padding: 10px;
 
+    &--selected {
+      border: 2px solid $color-selected;
+    }
   }
 
   &__title {
@@ -31,6 +38,19 @@ body {
 
 #map {
   background-color: gray;
+  height: 100%;
   overflow: hidden;
+}
+
+.modal-dialog {
+  height: 96%;
+  left: 2%;
+  margin: 0;
+  position: absolute;
+  top: 2%;
+  width: 96%;
+}
+
+.modal-content {
   height: 100%;
 }

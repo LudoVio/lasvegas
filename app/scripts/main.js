@@ -1,17 +1,21 @@
+/*
+ * Main Javascript file.
+ */
+
 'use strict';
 
 var $ = require('jquery');
 var ko = require('knockout');
 var places = require('./places');
+require('./customBindings')(ko);
 var Octopus = require('./octopus');
+var octopus = new Octopus(places);
+var googlemap = require('./googlemap')(octopus);
 
-ko.applyBindings(new Octopus(places));
+// Put the octopus/controller/viewmodel at work
+ko.applyBindings(octopus);
 
-// Google Map
+// Create a global variable to keep the Google Map referenced
+// And a global function to use as a jsonp callback
 window.map = undefined;
-window.initMap = function () {
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: -34.397, lng: 150.644},
-        zoom: 8
-    });
-};
+window.initMap = googlemap;
