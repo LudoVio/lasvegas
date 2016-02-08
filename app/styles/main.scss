@@ -1,8 +1,36 @@
-.gmap {
-  padding: 0;
+html,
+body {
+  height: 100%;
+}
+
+.sidebar {
+  float: left;
+  height: 100%;
+  overflow: auto;
+  width: 320px;
+
+  &__checkbox {
+    display: none;
+  }
+
+  &__item {
+    cursor: pointer;
+    font-weight: 400;
+    padding: 10px;
+
+  }
+
+  &__title {
+    text-align: center;
+  }
+
+  &__search {
+    padding: 10px;
+  }
 }
 
 #map {
-  height: 100%;
   background-color: gray;
+  overflow: hidden;
+  height: 100%;
 }
