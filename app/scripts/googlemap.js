@@ -40,7 +40,7 @@ module.exports = function (octopus) {
                 '<p id="info-window__location">'+
                 place.location +
                 '</p>'+
-                '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal" data-place="' + i +'">'+
+                '<button type="button" class="btn btn-primary btn-more-infos" data-toggle="modal" data-target="#modal" data-place="' + i +'">'+
                 '<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> More Infos</button>'+
                 '</div>';
 
@@ -54,6 +54,6 @@ module.exports = function (octopus) {
             var button = $(event.relatedTarget); // Button that triggered the modal
             var place_id = parseInt(button.data('place')); // The place id found in the data attribute
             octopus.setInfosPlace(place_id);
-        })
+        });
     };
 };

@@ -3,13 +3,12 @@
 var Place = require('./place');
 var Infos = require('./infos');
 
-module.exports = function (places) {
+module.exports = function (datas) {
     var self = this;
 
-    self.places = ko.observableArray();
-    for (var i = 0, length = places.length ; i < length ; i++) {
-        self.places.push(new Place(places[i]));
-    }
+    self.places = ko.observableArray(datas.places.map(function (placeData) {
+        return new Place(placeData);
+    }));
 
     self._search = '';
     self.search = ko.pureComputed({
@@ -26,7 +25,7 @@ module.exports = function (places) {
         owner: self
     });
 
-    self.infos = new Infos();
+    self.infos = new Infos(datas.apis);
 
     self.setInfosPlace = function (place_id) {
         var place = self.places()[place_id];

@@ -28,4 +28,8 @@ module.exports = function () {
     self.setActive = function (api) {
         self.active(api);
     };
+    self.isActive = function (api) {
+        console.log(api);
+    };
+
 };
