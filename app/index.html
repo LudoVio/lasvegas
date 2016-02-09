@@ -23,7 +23,7 @@
         <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></div>
     </div>
 
-    <div class="sidebar__list" data-bind='foreach: places'>
+    <div class="sidebar__list" data-bind="foreach: places.places">
         <label class="sidebar__item" data-bind="visible: visible, css: {'sidebar__item--selected': selected}">
             <input  class="sidebar__checkbox" type="checkbox" data-bind="checked: selected">
             <p class="sidebar__name" data-bind='text: name'></p>
@@ -37,19 +37,19 @@
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" data-bind="with: infos">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" data-bind="with: place">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" data-bind="text: name"></h4>
                 <p class="modal-title" data-bind="text: location"></p>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" data-bind="with: apis">
                 <div data-bind="foreach: apis">
                     <button type="button" class="btn btn-primary btn-api"
-                            data-bind="text: $data, click: $parent.setActive, css: {disabled: $parent.isActive($data)}">
+                            data-bind="text: name, click: $parent.active, css: {disabled: $parent.active() === $data}">
                     </button>
                 </div>
-                <div class="infos-content">
-                    <span data-bind="text: active"></span>
+                <div class="infos-content" data-bind="with: active()">
+                    <span data-bind="text: name"></span>
                 </div>
             </div>
         </div><!-- /.modal-content -->
@@ -61,7 +61,7 @@
 <script src="scripts/vendor/knockout.js"></script>
 <script src="scripts/main.js"></script>
 <script async defer
-        src="DEBUGhttps://maps.googleapis.com/maps/api/js?key=AIzaSyB_yipln8MQDbTgBMISVAeosciiG-1bAkY&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_yipln8MQDbTgBMISVAeosciiG-1bAkY&callback=onMapLoaded">
 </script>
 
 </body>
