@@ -1,6 +1,15 @@
 [
   {
-    "name": "Yelp"
+    "name": "Yelp",
+    "url": "https://api.yelp.com/v2/search/",
+    "oauth": {
+      "oauth_consumer_key": "zcnTsN3e7uAwFARL9ABSgA",
+      "oauth_token": "Fv6FpQ6W1C_OY4q7IONE2DQuJw0Od332",
+      "oauth_signature_method": "HMAC-SHA1",
+      "oauth_version": "1.0",
+      "oauth_consumer_secret": "1fhywusiXHcbUwAZFCEVLhupcPM",
+      "oauth_token_secret": "pRlpl-oXtzKKT53k2iiyke-9L90"
+    }
   },
   {
     "name": "Foursquare"

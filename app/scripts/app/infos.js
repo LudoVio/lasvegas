@@ -8,10 +8,9 @@ module.exports = function (apis) {
     var self = this;
 
     self.place = ko.observable({});
-    self.apis = new Apis(apis);
+    self.apis = new Apis(self, apis);
 
     self.onOpen = function (place) {
         self.place(place);
-        self.apis.active({});
     };
 };

@@ -45,11 +45,24 @@
             <div class="modal-body" data-bind="with: apis">
                 <div data-bind="foreach: apis">
                     <button type="button" class="btn btn-primary btn-api"
-                            data-bind="text: name, click: $parent.active, css: {disabled: $parent.active() === $data}">
+                            data-bind="text: name, click: $parent.setActive, css: {disabled: $parent.active() === $data}">
                     </button>
                 </div>
                 <div class="infos-content" data-bind="with: active()">
-                    <span data-bind="text: name"></span>
+                    <div class="yelp" data-bind="visible: name == 'Yelp'">
+                        <div data-bind="visible: rating() && !error()">
+                            <p>Rating: <span data-bind="text: rating"></span></p>
+                            <p><img src="" data-bind="attr: { src: rating_image_link}"></p>
+                            <p>Number of reviews: <span data-bind="text: review_count"></span></p>
+
+                            <a target="_blank" data-bind="attr: { href: link}">
+                                <img src="//s3-media4.fl.yelpcdn.com/assets/srv0/developer_pages/c2e071437bfb/assets/img/yelp_review_btn_red@2x.png" alt="Reviews from Yelp, red" width="140" height="30">
+                            </a>
+                        </div>
+                        <p data-bind="visible: error">
+                            Sorry we couldn't retrieve any informations from Yelp.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div><!-- /.modal-content -->
@@ -59,6 +72,7 @@
 <script src="scripts/vendor/jquery.min.js"></script>
 <script src="scripts/vendor/bootstrap.min.js"></script>
 <script src="scripts/vendor/knockout.js"></script>
+<script src="scripts/vendor/oauth-signature.js"></script>
 <script src="scripts/main.js"></script>
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_yipln8MQDbTgBMISVAeosciiG-1bAkY&callback=onMapLoaded">

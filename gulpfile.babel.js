@@ -62,7 +62,8 @@ gulp.task('scripts-vendor', () => {
             'bower_components/jquery/dist/jquery.min.js',
             'bower_components/jquery/dist/jquery.min.js.map',
             'bower_components/knockout/dist/knockout.js',
-            'bower_components/bootstrap/dist/js/bootstrap.min.js'])
+            'bower_components/bootstrap/dist/js/bootstrap.min.js',
+            'bower_components/oauth-signature/dist/oauth-signature.js'])
         .pipe($.changed('dist/scripts/vendor'))
         .pipe(gulp.dest('dist/scripts/vendor'))
 });
@@ -80,7 +81,7 @@ function lint(files, options) {
 gulp.task('lint', lint('app/scripts/**/*.js'));
 
 gulp.task('html', () => {
-    return gulp.src('app/index.html')
+    return gulp.src('app/*.html')
         .pipe($.htmlmin({collapseWhitespace: true}))
         .pipe(gulp.dest('dist'))
         .pipe(reload({stream: true}));;
@@ -129,7 +130,7 @@ gulp.task('serve', ['build'], () => {
         }
     });
 
-    gulp.watch('app/index.html', ['html']);
+    gulp.watch('app/*.html', ['html']);
     gulp.watch('app/styles/main.scss', ['styles']);
     gulp.watch('app/scripts/**/*', ['scripts']);
     gulp.watch('app/images/**/*', ['images']);

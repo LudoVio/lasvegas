@@ -82,7 +82,7 @@ module.exports = function (place) {
             '</p>'+
             '<button type="button"'+
             'class="btn btn-primary btn-more-infos" data-toggle="modal" data-target="#modal" data-place="' + self.id +'">'+
-            '<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> More Infos</button>'+
+            '<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> More Informations</button>'+
             '</div>';
 
         self.infowindow = new google.maps.InfoWindow({
