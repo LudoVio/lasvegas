@@ -16,7 +16,7 @@ module.exports = function (infos, apis) {
     self.setActive = function (api) {
         self.active(api);
         if(api) {
-            self.active().request(infos.place().name, infos.place().location);
+            self.active().request(infos.place().name, infos.place().location, infos.place().coords);
         }
     };
     self.setActive();

@@ -46,5 +46,8 @@ module.exports = function () {
     var app = new App();
     ko.applyBindings(app);
 
+    // Create a global for Google Map callback
+    window.onMapLoaded = app.onMapLoaded;
+
     return app;
 };

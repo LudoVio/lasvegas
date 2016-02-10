@@ -5,24 +5,25 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>lasvegas</title>
-
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <link rel="stylesheet" href="styles/main.css">
 
 </head>
 <body>
 
+<!-- Sidebar -->
 <div class="sidebar">
+    <!-- Title -->
     <h1 class="sidebar__title">Las Vegas</h1>
 
+    <!-- Search widget -->
     <div class="sidebar__search input-group">
         <input type="text" class="form-control" placeholder="Search ..."
             data-bind="textInput: search">
         <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></div>
     </div>
 
+    <!-- List of places -->
     <div class="sidebar__list" data-bind="foreach: places.places">
         <label class="sidebar__item" data-bind="visible: visible, css: {'sidebar__item--selected': selected}">
             <input  class="sidebar__checkbox" type="checkbox" data-bind="checked: selected">
@@ -32,25 +33,35 @@
     </div>
 </div>
 
+<!-- Google Map -->
 <div id="map"></div>
 
+<!-- Apis infos: Twitter Bootstrap modal -->
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" data-bind="with: infos">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
+            <!-- Header -->
             <div class="modal-header" data-bind="with: place">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" data-bind="text: name"></h4>
                 <p class="modal-title" data-bind="text: location"></p>
             </div>
+
+            <!-- Body -->
             <div class="modal-body" data-bind="with: apis">
-                <div data-bind="foreach: apis">
+                <!-- Top bar with buttons for each apis -->
+                <p data-bind="foreach: apis">
                     <button type="button" class="btn btn-primary btn-api"
                             data-bind="text: name, click: $parent.setActive, css: {disabled: $parent.active() === $data}">
                     </button>
-                </div>
+                </p>
+
+                <!-- Content with one active api -->
                 <div class="infos-content" data-bind="with: active()">
-                    <div class="yelp" data-bind="visible: name == 'Yelp'">
-                        <div data-bind="visible: rating() && !error()">
+                    <!-- Yelp -->
+                    <div class="yelp" data-bind="if: name == 'Yelp'">
+                        <!-- Loaded -->
+                        <div data-bind="visible: state() == 'loaded'">
                             <p>Rating: <span data-bind="text: rating"></span></p>
                             <p><img src="" data-bind="attr: { src: rating_image_link}"></p>
                             <p>Number of reviews: <span data-bind="text: review_count"></span></p>
@@ -59,8 +70,49 @@
                                 <img src="//s3-media4.fl.yelpcdn.com/assets/srv0/developer_pages/c2e071437bfb/assets/img/yelp_review_btn_red@2x.png" alt="Reviews from Yelp, red" width="140" height="30">
                             </a>
                         </div>
-                        <p data-bind="visible: error">
+
+                        <!-- Loading -->
+                        <div data-bind="visible: state() == 'loading'">
+                            Loading ...
+                        </div>
+
+                        <!-- Error -->
+                        <p data-bind="visible: state() == 'error'">
                             Sorry we couldn't retrieve any informations from Yelp.
+                        </p>
+                    </div>
+
+                    <!-- Foursquare -->
+                    <div class="foursquare" data-bind="if: name == 'Foursquare'">
+                        <!-- Loaded -->
+                        <div data-bind="visible: state() == 'loaded'">
+                            <h3>Recommanded Places</h3>
+
+                            <div class="foursquare__list" data-bind="foreach: recommandedPlaces">
+                                <div class="foursquare__item" data-bind="with: venue">
+                                    <h4 class="foursquare__name" data-bind="text: name"></h4>
+                                    <p class="foursquare__category">
+                                        <strong>Category:</strong> <span data-bind="text: categories[0].name"></span>
+                                    </p>
+                                    <p class="foursquare__address">
+                                        <strong>Address:</strong> <span data-bind="text: location.address"></span>
+                                    </p>
+                                    <p class="foursquare__rating">
+                                        <strong>Rating:</strong>
+                                        <span data-bind="text: rating, style: {'background-color': '#' + ratingColor}"></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Loading -->
+                        <div data-bind="visible: state() == 'loading'">
+                            Loading ...
+                        </div>
+
+                        <!-- Error -->
+                        <p data-bind="visible: state() == 'error'">
+                            Sorry we couldn't retrieve any informations from Foursquare.
                         </p>
                     </div>
                 </div>

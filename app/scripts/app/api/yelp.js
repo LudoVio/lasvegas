@@ -5,8 +5,11 @@
 module.exports = function (api) {
     var self = this;
 
+    // State of the object: empty | loading | loaded | error
+    self.state = ko.observable('empty');
+
+    // Api data
     self.name = api.name;
-    self.response = ko.observable({});
     self.url = api.url;
     self.oauth = api.oauth;
 
@@ -15,38 +18,39 @@ module.exports = function (api) {
     self.rating = ko.observable('');
     self.rating_image_link = ko.observable('');
     self.review_count = ko.observable('');
-    self.error = ko.observable(false);
 
+    // Empty the object
     self.clean = function () {
         self.link('');
         self.rating('');
         self.rating_image_link('');
         self.review_count('');
-        self.error(false);
+        self.state('empty');
     };
 
     // Call when request succeed
     self.onSucces = function (results) {
-        console.log('Success request yelp');
-        console.log('results', results);
-        console.log('error', self.error());
-
         var infos = results.businesses[0];
 
         self.link(infos.url);
         self.rating(infos.rating);
         self.rating_image_link(infos.rating_img_url_large);
         self.review_count(infos.review_count);
+
+        self.state('loaded');
     };
 
     // Call when request fail
+    // TODO: save the error information for view
     self.onError = function (jqXHR, textStatus, errorThrown) {
-        self.error(true);
+        self.state('error');
     };
 
-    // Make a request the the search endpoint of yelp
-    self.request = function (term, location) {
-        self.error(false);
+    // Make a request to the search endpoint of yelp
+    self.request = function (name, location) {
+        self.state('loading');
+
+        // Create a global for the jsonp callback
         window.yelpOnSucces = self.onSucces;
 
         var parameters = {
@@ -57,7 +61,7 @@ module.exports = function (api) {
             oauth_signature_method: 'HMAC-SHA1',
             oauth_version : '1.0',
             callback: 'yelpOnSucces',
-            term: term,
+            term: name,
             location: location
         };
 
@@ -75,12 +79,10 @@ module.exports = function (api) {
             cache: true,
             dataType: 'jsonp',
             jsonpCallback: 'yelpOnSucces',
-            error: function(jqXHR, textStatus, errorThrown) {
-                self.onError(jqXHR, textStatus, errorThrown);
-            }
+            error: self.onError
         };
 
-        var jqxhr = $.ajax(settings);
+        $.ajax(settings);
     }
 };
 
