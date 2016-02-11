@@ -1,61 +1,11 @@
-$color-selected: orange;
+/*!
+ * Main styles
+ */
 
-html,
-body {
-  height: 100%;
-}
-
-.sidebar {
-  float: left;
-  height: 100%;
-  overflow: auto;
-  width: 320px;
-
-  &__checkbox {
-    display: none;
-  }
-
-  &__item {
-    border: 2px solid rgba(255,255,255,0);
-    cursor: pointer;
-    font-weight: 400;
-    margin: 0;
-    padding: 10px;
-
-    &--selected {
-      border: 2px solid $color-selected;
-    }
-  }
-
-  &__title {
-    text-align: center;
-  }
-
-  &__search {
-    padding: 10px;
-  }
-}
-
-#map {
-  background-color: gray;
-  height: 100%;
-  overflow: hidden;
-}
-
-.modal-dialog {
-  height: 96%;
-  left: 2%;
-  margin: 0;
-  position: absolute;
-  top: 2%;
-  width: 96%;
-}
-
-.modal-content {
-  height: 100%;
-  overflow: auto;
-}
-
-.btn-api {
-  margin-right: 5px;
-}
+@import "color";
+@import "breakpoints";
+@import "global";
+@import "sidebar";
+@import "map";
+@import "info-window";
+@import "infos";

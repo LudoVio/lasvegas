@@ -1,0 +1,23 @@
+/*!
+ * Global styles
+ */
+
+html,
+body {
+    @include dark;
+    font-family: 'Open Sans', sans-serif;
+    height: 100%;
+}
+
+.glyphicon-spin {
+    animation: glyphicon-spin 2s infinite linear;
+}
+
+@keyframes glyphicon-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(359deg);
+    }
+}

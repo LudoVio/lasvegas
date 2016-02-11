@@ -11,6 +11,11 @@
 </head>
 <body>
 
+<!-- Sidebar trigger -->
+<a class="sidebar-trigger">
+    <span class="sidebar-trigger__icon"></span>
+</a> <!-- cd-primary-nav-trigger -->
+
 <!-- Sidebar -->
 <div class="sidebar">
     <!-- Title -->
@@ -20,7 +25,7 @@
     <div class="sidebar__search input-group">
         <input type="text" class="form-control" placeholder="Search ..."
             data-bind="textInput: search">
-        <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></div>
+        <div class="input-group-addon sidebar__search__icon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></div>
     </div>
 
     <!-- List of places -->
@@ -34,24 +39,24 @@
 </div>
 
 <!-- Google Map -->
-<div id="map"></div>
+<div id="map" class="map"></div>
 
 <!-- Apis infos: Twitter Bootstrap modal -->
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" data-bind="with: infos">
     <div class="modal-dialog modal-lg">
-        <div class="modal-content">
+        <div class="infos modal-content">
             <!-- Header -->
             <div class="modal-header" data-bind="with: place">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" data-bind="text: name"></h4>
-                <p class="modal-title" data-bind="text: location"></p>
+                <button type="button" class="infos__close close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="infos__name modal-title" data-bind="text: name"></h4>
+                <p class="infos__location modal-title" data-bind="text: location"></p>
             </div>
 
             <!-- Body -->
             <div class="modal-body" data-bind="with: apis">
                 <!-- Top bar with buttons for each apis -->
                 <p data-bind="foreach: apis">
-                    <button type="button" class="btn btn-primary btn-api"
+                    <button type="button" class="infos__button btn btn-primary btn-api"
                             data-bind="text: name, click: $parent.setActive, css: {disabled: $parent.active() === $data}">
                     </button>
                 </p>
@@ -62,9 +67,9 @@
                     <div class="yelp" data-bind="if: name == 'Yelp'">
                         <!-- Loaded -->
                         <div data-bind="visible: state() == 'loaded'">
-                            <p>Rating: <span data-bind="text: rating"></span></p>
+                            <p><strong>Rating:</strong> <span data-bind="text: rating"></span></p>
                             <p><img src="" data-bind="attr: { src: rating_image_link}"></p>
-                            <p>Number of reviews: <span data-bind="text: review_count"></span></p>
+                            <p><strong>Number of reviews:</strong> <span data-bind="text: review_count"></span></p>
 
                             <a target="_blank" data-bind="attr: { href: link}">
                                 <img src="//s3-media4.fl.yelpcdn.com/assets/srv0/developer_pages/c2e071437bfb/assets/img/yelp_review_btn_red@2x.png" alt="Reviews from Yelp, red" width="140" height="30">
@@ -73,7 +78,7 @@
 
                         <!-- Loading -->
                         <div data-bind="visible: state() == 'loading'">
-                            Loading ...
+                            <span class="spinner glyphicon glyphicon-refresh glyphicon-spin" aria-hidden="true"></span>
                         </div>
 
                         <!-- Error -->
@@ -86,7 +91,7 @@
                     <div class="foursquare" data-bind="if: name == 'Foursquare'">
                         <!-- Loaded -->
                         <div data-bind="visible: state() == 'loaded'">
-                            <h3>Recommanded Places</h3>
+                            <h3 class="foursquare__title">Recommanded Places</h3>
 
                             <div class="foursquare__list" data-bind="foreach: recommandedPlaces">
                                 <div class="foursquare__item" data-bind="with: venue">
@@ -97,9 +102,9 @@
                                     <p class="foursquare__address">
                                         <strong>Address:</strong> <span data-bind="text: location.address"></span>
                                     </p>
-                                    <p class="foursquare__rating">
+                                    <p>
                                         <strong>Rating:</strong>
-                                        <span data-bind="text: rating, style: {'background-color': '#' + ratingColor}"></span>
+                                        <span class="foursquare__rating" data-bind="text: rating, style: {'background-color': '#' + ratingColor}"></span>
                                     </p>
                                 </div>
                             </div>
@@ -107,7 +112,7 @@
 
                         <!-- Loading -->
                         <div data-bind="visible: state() == 'loading'">
-                            Loading ...
+                            <span class="spinner glyphicon glyphicon-refresh glyphicon-spin" aria-hidden="true"></span>
                         </div>
 
                         <!-- Error -->
@@ -121,6 +126,20 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+<script type="text/javascript">
+    WebFontConfig = {
+        google: { families: [ 'Open+Sans:400,700,400italic:latin' ] }
+    };
+    (function() {
+        var wf = document.createElement('script');
+        wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+                '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+        wf.type = 'text/javascript';
+        wf.async = 'true';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wf, s);
+    })();
+</script>
 <script src="scripts/vendor/jquery.min.js"></script>
 <script src="scripts/vendor/bootstrap.min.js"></script>
 <script src="scripts/vendor/knockout.js"></script>

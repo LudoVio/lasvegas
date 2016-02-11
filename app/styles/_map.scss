@@ -1,0 +1,10 @@
+/*!
+ * Map styles
+ */
+
+.map {
+    @include initial;
+    background-color: gray;
+    height: 100%;
+    overflow: hidden;
+}

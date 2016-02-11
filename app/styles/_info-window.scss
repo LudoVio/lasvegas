@@ -1,0 +1,40 @@
+/*!
+ * Info Window of Google Map
+ */
+
+.info-window {
+    &__button {
+        background-color: $base03;
+        color: $cyan;
+        font-size: 1.15em;
+        font-weight: 700;
+        margin: auto;
+        padding: 5px;
+        text-align: center;
+        width: 80%;
+    }
+
+    &__icon:before {
+        color: $cyan;
+        font-size: 1.2em;
+        margin-right: 5px;
+        position: relative;
+        top: 2px;
+    }
+
+    &__location {
+        color: $base01;
+        font-style: italic;
+        letter-spacing: 0.03em;
+        margin-bottom: 20px;
+    }
+
+    &__name {
+        border-bottom: 1px solid $base01;
+        color: $orange;
+        font-size: 1.4em;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        padding-bottom: 10px;
+    }
+}

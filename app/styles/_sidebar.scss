@@ -1,0 +1,136 @@
+/*!
+ * Sidebar styles
+ */
+
+.sidebar-trigger {
+    background-color: $base01;
+    border-radius: 50%;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    height: 50px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 50px;
+    z-index: 2;
+
+    &__icon {
+        /* this span is the central line of the menu icon */
+        @include light;
+        display: inline-block;
+        height: 3px;
+        left: 13px;
+        position: absolute;
+        top: 23px;
+        transition: background-color 0.3s;
+        width: 24px;
+
+        /* these are the upper and lower lines in the menu icon */
+        &::before, &:after {
+            content: '';
+            height: 100%;
+            position: absolute;
+            right: 0;
+            transition: transform .3s, top .3s, background-color 0s;
+            width: 100%;
+        }
+
+        &::before {
+            top: -6px;
+        }
+
+        &::after {
+            top: 6px;
+        }
+
+        &--clicked {
+            background-color: rgba($base03, 0);
+
+            &::before {
+                top: 0;
+                transform: rotate(135deg);
+            }
+
+            &::after {
+                top: 0;
+                transform: rotate(225deg);
+            }
+        }
+    }
+}
+
+.sidebar {
+    /* by default it's hidden - on top of the viewport */
+    height: 100%;
+    left: 0;
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    transform: translateY(-100%);
+    transition-property: transform;
+    transition-duration: 0.4s;
+    width: 100%;
+    z-index: 1;
+
+    &--visible {
+        transform: translateY(0);
+    }
+
+    &__checkbox {
+        display: none;
+    }
+
+    &__item {
+        border-top: 1px solid $base01;
+        margin: 0;
+        padding: 10px;
+        transition: background-color 0.3s, color 0.3s;
+
+        &--selected {
+            background-color: $base2;
+            border-top-color: $base1;
+            transition: background-color 0.3s, color 0.3s;
+
+            & .sidebar__name,
+            & .sidebar__location {
+                background-color: $base2;
+                transition: background-color 0.3s, color 0.3s;
+            }
+
+            & .sidebar__name {
+                color: $orange;
+            }
+
+            & .sidebar__location {
+                color: $base01;
+            }
+        }
+    }
+
+    &__name {
+        color: $cyan;
+        font-size: 1.2em;
+        letter-spacing: 0.05em;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    &__location {
+        font-size: 0.9em;
+        font-style: italic;
+        font-weight: 400;
+        letter-spacing: 0.1em;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    &__search {
+        padding: 10px;
+
+        &__icon {
+            @include light;
+        }
+    }
+
+    &__title {
+        color: $magenta;
+        text-align: center;
+    }
+}

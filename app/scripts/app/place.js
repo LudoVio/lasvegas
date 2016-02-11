@@ -1,5 +1,5 @@
 /**
- * Model that represente a place.
+ * Represente a place.
  */
 
 var id = 0;
@@ -50,10 +50,12 @@ module.exports = function (place) {
         }
     });
 
+    // Set self.visible = search in self.name
     self.filter = function (search) {
         self.visible(self.name.toLowerCase().indexOf(search) > -1);
     };
 
+    // Called when the Google Map is loaded
     self.onMapLoaded = function () {
         var coords = self.coords.split(',');
         var lat = coords[1];
@@ -74,15 +76,15 @@ module.exports = function (place) {
         // Create an InfoWindow
         var contentString =
             '<div class="info-window">'+
-            '<p id="info-window__name">'+
+            '<p class="info-window__name">'+
             place.name +
             '</p>'+
-            '<p id="info-window__location">'+
+            '<p class="info-window__location">'+
             place.location +
             '</p>'+
-            '<button type="button"'+
-            'class="btn btn-primary btn-more-infos" data-toggle="modal" data-target="#modal" data-place="' + self.id +'">'+
-            '<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> More Informations</button>'+
+            '<div '+
+            'class="info-window__button" data-toggle="modal" data-target="#modal" data-place="' + self.id +'">'+
+            '<span class="info-window__icon glyphicon glyphicon-info-sign" aria-hidden="true"></span> More Informations</div>'+
             '</div>';
 
         self.infowindow = new google.maps.InfoWindow({

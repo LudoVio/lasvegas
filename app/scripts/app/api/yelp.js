@@ -86,6 +86,9 @@ module.exports = function (api) {
     }
 };
 
+
+// Generate a random string(10)
+// It s needed by Yelp for oauth
 function rdmString()
 {
     var text = "";
