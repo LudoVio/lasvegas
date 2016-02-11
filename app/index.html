@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>lasvegas</title>
     <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/perfect-scrollbar.min.css">
     <link rel="stylesheet" href="styles/main.css">
 
 </head>
@@ -17,7 +18,7 @@
 </a> <!-- cd-primary-nav-trigger -->
 
 <!-- Sidebar -->
-<div class="sidebar">
+<div id="sidebar" class="sidebar">
     <!-- Title -->
     <h1 class="sidebar__title">Las Vegas</h1>
 
@@ -44,7 +45,7 @@
 <!-- Apis infos: Twitter Bootstrap modal -->
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" data-bind="with: infos">
     <div class="modal-dialog modal-lg">
-        <div class="infos modal-content">
+        <div id="infos" class="infos modal-content">
             <!-- Header -->
             <div class="modal-header" data-bind="with: place">
                 <button type="button" class="infos__close close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -91,7 +92,7 @@
                     <div class="foursquare" data-bind="if: name == 'Foursquare'">
                         <!-- Loaded -->
                         <div data-bind="visible: state() == 'loaded'">
-                            <h3 class="foursquare__title">Recommanded Places</h3>
+                            <h3 class="foursquare__title">Recommended Places</h3>
 
                             <div class="foursquare__list" data-bind="foreach: recommandedPlaces">
                                 <div class="foursquare__item" data-bind="with: venue">

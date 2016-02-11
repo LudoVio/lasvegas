@@ -62,7 +62,7 @@
     /* by default it's hidden - on top of the viewport */
     height: 100%;
     left: 0;
-    overflow: auto;
+    overflow: hidden;
     position: fixed;
     top: 0;
     transform: translateY(-100%);
@@ -81,6 +81,7 @@
 
     &__item {
         border-top: 1px solid $base01;
+        display: block;
         margin: 0;
         padding: 10px;
         transition: background-color 0.3s, color 0.3s;
@@ -132,5 +133,18 @@
     &__title {
         color: $magenta;
         text-align: center;
+    }
+}
+
+@media (min-width: $screen-md-min) {
+    .sidebar {
+        float: left;
+        position: relative;
+        transform: initial;
+        width: 320px;
+    }
+
+    .sidebar-trigger {
+        display: none;
     }
 }

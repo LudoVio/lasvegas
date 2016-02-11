@@ -32,7 +32,8 @@ gulp.task('styles', () => {
 gulp.task('styles-vendor', () => {
     return gulp.src([
         'bower_components/bootstrap/dist/css/bootstrap.min.css',
-        'bower_components/bootstrap/dist/css/bootstrap.min.css.map'])
+        'bower_components/bootstrap/dist/css/bootstrap.min.css.map',
+        'bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css'])
         .pipe($.changed('dist/styles'))
         .pipe(gulp.dest('dist/styles'))
 });

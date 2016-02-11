@@ -56,5 +56,8 @@
         "single"
       ]
     }
+  },
+  "dependencies": {
+    "perfect-scrollbar": "^0.6.10"
   }
 }
