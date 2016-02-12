@@ -17,10 +17,6 @@ module.exports = function (parent, place) {
     // Activate or cancel the animation of the marker depending of the value of self.selected
     // Open or close the infowindow too
     function handleSelection () {
-        if(self.selected()) {
-            parent.unselectAllPlacesExcept(self);
-        }
-
         if(self.marker) {
             if(self.selected()) {
                 self.marker.setAnimation(google.maps.Animation.BOUNCE);
@@ -32,6 +28,10 @@ module.exports = function (parent, place) {
                 self.marker.setAnimation(null);
                 self.infowindow.close();
             }
+        }
+
+        if(self.selected()) {
+            parent.onPlaceSelected(self);
         }
     }
 

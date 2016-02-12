@@ -13,12 +13,12 @@
 <body>
 
 <!-- Sidebar trigger -->
-<a class="sidebar-trigger">
-    <span class="sidebar-trigger__icon"></span>
+<a class="sidebar-trigger" data-bind="click: mobiletriggerToggleClicked">
+    <span class="sidebar-trigger__icon" data-bind="css: {'sidebar-trigger__icon--clicked': mobileTriggerClicked}"></span>
 </a> <!-- cd-primary-nav-trigger -->
 
 <!-- Sidebar -->
-<div id="sidebar" class="sidebar">
+<div id="sidebar" class="sidebar" data-bind="css: {'sidebar--visible': mobileTriggerClicked}">
     <!-- Title -->
     <h1 class="sidebar__title">Las Vegas</h1>
 

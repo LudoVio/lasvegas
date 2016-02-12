@@ -5,7 +5,7 @@
 
 var Place = require('./place');
 
-module.exports = function (places) {
+module.exports = function (parent, places) {
     var self = this;
 
     // List of Place
@@ -14,12 +14,14 @@ module.exports = function (places) {
     }));
 
     // Unselect all places
-    self.unselectAllPlacesExcept = function (except) {
+    self.onPlaceSelected = function (place) {
         for (var i = 0, length = self.places().length ; i < length ; i++) {
-            if(self.places()[i] !== except) {
+            if(self.places()[i] !== place) {
                 self.places()[i].selected(false);
             }
         }
+
+        parent.onPlaceSelected(place);
     };
 
     // Call .filter() on each Place

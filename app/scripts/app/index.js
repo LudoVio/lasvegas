@@ -14,7 +14,15 @@ var Infos = require('./infos');
 function App () {
     var self = this;
 
-    self.places = new Places(datas.places);
+    self.mobileTriggerClicked = ko.observable(false);
+    self.mobiletriggerToggleClicked = function () {
+        self.mobileTriggerClicked(! self.mobileTriggerClicked());
+    };
+
+    self.places = new Places(self, datas.places);
+    self.onPlaceSelected = function (place) {
+        self.mobileTriggerClicked(false);
+    };
 
     // Watch for change in the search input and send the value to self.places.filter()
     self.search = ko.observable('');
