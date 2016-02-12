@@ -146,8 +146,13 @@
 <script src="scripts/vendor/knockout.js"></script>
 <script src="scripts/vendor/oauth-signature.js"></script>
 <script src="scripts/main.js"></script>
+<script>
+    function googleError() {
+        alert('Sorry but we were unable to load the Google Map');
+    }
+</script>
 <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_yipln8MQDbTgBMISVAeosciiG-1bAkY&callback=onMapLoaded">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_yipln8MQDbTgBMISVAeosciiG-1bAkY&callback=onMapLoaded" onerror="googleError()">
 </script>
 
 </body>
