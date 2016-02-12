@@ -97,5 +97,8 @@ module.exports = function (parent, place) {
         self.infowindow = new google.maps.InfoWindow({
             content: contentString
         });
+        self.infowindow.addListener('closeclick', function () {
+            self.selected(false);
+        });
     };
 };
