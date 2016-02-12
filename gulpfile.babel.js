@@ -120,7 +120,7 @@ gulp.task('extras', () => {
     }).pipe(gulp.dest('dist'));
 });
 
-gulp.task('clean', del.bind(null, 'dist'));
+gulp.task('clean', del.bind(null, ['dist/**/*', '!.git']));
 
 gulp.task('serve', ['build'], () => {
     browserSync({
