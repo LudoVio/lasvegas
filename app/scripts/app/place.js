@@ -24,6 +24,9 @@ module.exports = function (parent, place) {
         if(self.marker) {
             if(self.selected()) {
                 self.marker.setAnimation(google.maps.Animation.BOUNCE);
+                setTimeout(function () {
+                    self.marker.setAnimation(null);
+                }, 2500);
                 self.infowindow.open(map, self.marker);
             } else {
                 self.marker.setAnimation(null);
