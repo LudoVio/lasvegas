@@ -68,10 +68,12 @@ module.exports = function (parent, place) {
         var lat = coords[1];
         var lng = coords[0];
 
+        var position = new google.maps.LatLng(lat, lng);
         self.marker = new google.maps.Marker({
-            position: new google.maps.LatLng(lat, lng),
+            position: position,
             title: self.name
         });
+        window.latLngBounds.extend(position);
 
         if(self.visible()) {
             self.marker.setMap(map);

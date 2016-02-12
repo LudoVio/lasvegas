@@ -38,8 +38,15 @@ function App () {
             zoom: 11
         });
 
+        // Create a global to save the LatLngBounds
+        window.latLngBounds = new google.maps.LatLngBounds();
+
         // Tell self.places that the map is here
         self.places.onMapLoaded();
+
+        // Set the zoom to be able to see all the marker, then center
+        window.map.fitBounds(window.latLngBounds);
+        window.map.setCenter(window.latLngBounds.getCenter());
 
         // Watch event 'modal open' and send the Place to self.infos
         $('#modal').on('show.bs.modal', function (event) {
