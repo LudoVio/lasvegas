@@ -48,12 +48,12 @@ function App () {
         window.map.fitBounds(window.latLngBounds);
         window.map.setCenter(window.latLngBounds.getCenter());
 
-        // Watch event 'modal open' and send the Place to self.infos
-        $('#modal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget); // Button that triggered the modal
-            var place_id = parseInt(button.data('place')); // The place id found in the data attribute
-            self.infos.onOpen(self.places.places()[place_id]);
-        });
+        // Watch self.places.places.selected and set self.infos.place(this)
+        for (var i = 0; i < self.places.places().length; i++) {
+            self.places.places()[i].selected.subscribe(function() {
+                self.infos.place(this);
+            }, self.places.places()[i]);
+        }
     }
 }
 
