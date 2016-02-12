@@ -3,7 +3,7 @@
 Do you want to go to Las Vegas ?
 This app is for you !
 
-You can see the app online [here]().
+You can see the app online [here](http://ludovio.github.io/lasvegas/).
 
 # How to use it
 
