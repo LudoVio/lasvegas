@@ -10,8 +10,17 @@ module.exports = function (places) {
 
     // List of Place
     self.places = ko.observableArray(places.map(function (placeData) {
-        return new Place(placeData);
+        return new Place(self, placeData);
     }));
+
+    // Unselect all places
+    self.unselectAllPlacesExcept = function (except) {
+        for (var i = 0, length = self.places().length ; i < length ; i++) {
+            if(self.places()[i] !== except) {
+                self.places()[i].selected(false);
+            }
+        }
+    };
 
     // Call .filter() on each Place
     self.filter = function (search) {
